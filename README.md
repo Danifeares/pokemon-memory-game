@@ -1,8 +1,11 @@
-# React + Vite
+# Desafio Jogo da Memória
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img alt="Status" src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow"> 
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Desenvolvido por:
+<table>
+  <tr>
+    <td align="center"><a target="_blank" href="https://github.com/Danifeares"><img src="https://avatars.githubusercontent.com/u/117787402?v=4" width="100px;" alt=""/><br /><sub><b>Daniela Felipe Soares</b></sub></a><br /><a target="_blank" href="https://github.com/Danifeares">👩‍💻</a></td>
+  </tr>
+</table>
