@@ -6,13 +6,12 @@ import { useState } from "react";
 
 function App() {
   const [userName, setUserName] = useState('');
-  const [numberOfCards, setNumberOfCards] = useState(0);
-  console.log(userName, numberOfCards)
+  const [numberOfCards, setNumberOfCards] = useState(4);
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home setUserName={setUserName} setNumberOfCards={setNumberOfCards} />} />
-        <Route path="/game" element={<Game userName={userName} />} />
+        <Route path="/game" element={<Game userName={userName} numberOfCards={numberOfCards} />} />
         <Route path="/ranking" element={<Ranking />} />
       </Routes>
     </BrowserRouter>
