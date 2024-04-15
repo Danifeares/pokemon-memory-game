@@ -5,10 +5,13 @@ import PokemonCard from "./PokemonCard/PokemonCard";
 import { useSuffledArray } from "./hooks/useSuffledArray";
 import { v4 as uuidv4 } from 'uuid';
 import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar } from "./styles";
-
+import TimerCounter from "./TimerCounter";
+import { useState } from "react";
 
 const Game = ({ userName, numberOfCards }) => {
   const navigate = useNavigate();
+  
+  const [gameTime, setGameTime] = useState(0);
 
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
 
@@ -25,7 +28,7 @@ const Game = ({ userName, numberOfCards }) => {
                 onClick={() => navigate('/')}
               >Reiniciar</button>
 
-              <p>Timer será aqui</p>
+              <TimerCounter setGameTime={setGameTime} />
 
               <button
                 onClick={() => navigate('/ranking')}
@@ -33,7 +36,6 @@ const Game = ({ userName, numberOfCards }) => {
             </Navbar>
 
             <section>
-              <h1>Bem-vindo ao jogo da memória, {userName}</h1>
               <ContainerList>
                 {duplicatedCardsArray.map(card => (
                   <ListItem key={uuidv4()}>
@@ -42,25 +44,6 @@ const Game = ({ userName, numberOfCards }) => {
                 ))}
               </ContainerList>
 
-              <ul>
-                <li>Implementação de timer</li>
-                <li>
-                  É necessário que apenas duas cartas possam ser clicadas por vez,
-                  e quando clicadas as duas, e elas serem direfentes, o usuário terá
-                  alguns segundos para visualização até que elas sejam fechadas e exibam
-                  o verso novamente.
-                </li>
-                <li>
-                  Quando uma carta for igual a outra, elas devem sumir da tela, logo,
-                  serão excluídas do array de cartas (esse array receberá objetos cartas,
-                  que irão possuir id único.)
-                </li>
-                <li>
-                  Quando as cartas sumirem, eles devem sumir e as demais
-                  devem permanecer no local onde já estavam, para não atrapalhar o game.
-                  colocar outra coisa no local? não sei.
-                </li>
-              </ul>
             </section>
           </>
         }
