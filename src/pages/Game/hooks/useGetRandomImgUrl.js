@@ -1,4 +1,4 @@
-export const getRandomImgUrl = (arrayCards) => {
+export const useGetRandomImgUrl = (arrayCards) => {
   const imageNames = [
     'ampharos.png',
     'arcanine.png',

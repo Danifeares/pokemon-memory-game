@@ -1,94 +1,72 @@
 import { useNavigate } from "react-router-dom";
 import NotFound from "../../components/NotFound";
-import { generateCards } from "./utils/generateCards";
+import { useGenerateCards } from "./hooks/useGenerateCards";
 import PokemonCard from "./PokemonCard/PokemonCard";
-import { suffledArray } from "./utils/suffledArray";
-import styled from "styled-components";
+import { useSuffledArray } from "./hooks/useSuffledArray";
 import { v4 as uuidv4 } from 'uuid';
+import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar } from "./styles";
 
-const ContainerList = styled.ul`
-  display: flex;
-  gap: 30px;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  padding: 24px;
-`
 
-const ListItem = styled.li`
-  list-style: none;
-`
 const Game = ({ userName, numberOfCards }) => {
   const navigate = useNavigate();
 
-  const generatedCardsArray = generateCards(Number(numberOfCards));
-  
-  const duplicatedCardsArray = suffledArray(generatedCardsArray)
-  console.log(duplicatedCardsArray)
+  const generatedCardsArray = useGenerateCards(Number(numberOfCards));
+
+  const duplicatedCardsArray = useSuffledArray(generatedCardsArray);
+
   return (
-    <>
-      {
-        //!userName ? <NotFound /> :
-        <>
-          <nav>
-            <button
-              onClick={() => navigate('/')}
-            >Reiniciar</button>
+    <BackgroundDiv>
+      <ContainerMax>
+        {
+          //!userName ? <NotFound /> :
+          <>
+            <Navbar>
+              <button
+                onClick={() => navigate('/')}
+              >Reiniciar</button>
 
-            <p>Timer será aqui</p>
+              <p>Timer será aqui</p>
 
-            <button
-              onClick={() => navigate('/ranking')}
-            >Ranking</button>
-          </nav>
+              <button
+                onClick={() => navigate('/ranking')}
+              >Ranking</button>
+            </Navbar>
 
-          <section>
-            <h1>Bem-vindo ao jogo da memória, {userName}</h1>
-            <ContainerList>
-              {duplicatedCardsArray.map(card => (
-                <ListItem key={uuidv4()}>
-                  <PokemonCard card={card}/>
-                </ListItem>
-              ))}
-            </ContainerList>
+            <section>
+              <h1>Bem-vindo ao jogo da memória, {userName}</h1>
+              <ContainerList>
+                {duplicatedCardsArray.map(card => (
+                  <ListItem key={uuidv4()}>
+                    <PokemonCard card={card} />
+                  </ListItem>
+                ))}
+              </ContainerList>
 
-            <p>cards renderizados aqui</p>
-            <ul>
-              <li>
-                com base no numero de cartas setadas pelo usuário, irei
-                pegar essa quantidade cartas do arquivo de cartas. <strong>OK</strong>
-              </li>
-              <li>
-                As cartas precisarão ser duplicadas, e então exibidas
-                na tela de forma aleatória (com o verso em evidência.) <strong>OK</strong>
-              </li>
-              <li>
-                Quando ocorrer o clique nessas cartas, será revelado seu conteúdo. <strong>OK</strong>
-              </li>
-              <li>
-                É necessário que apenas duas cartas possam ser clicadas por vez,
-                e quando clicadas as duas, e elas serem direfentes, o usuário terá
-                alguns segundos para visualização até que elas sejam fechadas e exibam
-                o verso novamente.
-              </li>
-              <li>
-                Quando uma carta for igual a outra, elas devem sumir da tela, logo,
-                serão excluídas do array de cartas (esse array receberá objetos cartas,
-                que irão possuir id único.)
-              </li>
-              <li>
-                Quando as cartas sumirem, eles devem sumir e as demais
-                devem permanecer no local onde já estavam, para não atrapalhar o game.
-                colocar outra coisa no local? não sei.
-              </li>
-            </ul>
-          </section>
-        </>
-      }
+              <ul>
+                <li>Implementação de timer</li>
+                <li>
+                  É necessário que apenas duas cartas possam ser clicadas por vez,
+                  e quando clicadas as duas, e elas serem direfentes, o usuário terá
+                  alguns segundos para visualização até que elas sejam fechadas e exibam
+                  o verso novamente.
+                </li>
+                <li>
+                  Quando uma carta for igual a outra, elas devem sumir da tela, logo,
+                  serão excluídas do array de cartas (esse array receberá objetos cartas,
+                  que irão possuir id único.)
+                </li>
+                <li>
+                  Quando as cartas sumirem, eles devem sumir e as demais
+                  devem permanecer no local onde já estavam, para não atrapalhar o game.
+                  colocar outra coisa no local? não sei.
+                </li>
+              </ul>
+            </section>
+          </>
+        }
 
-    </>
+      </ContainerMax>
+    </BackgroundDiv>
   )
 }
 
