@@ -28,7 +28,7 @@ export const ContainerLogin = styled.section`
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 20px;
+    font-size: 24px;
   }
 
   img {
@@ -91,14 +91,10 @@ export const AvatarSelect = styled.div`
   }
   img {
     border-radius: 50%;
-    border: 1px solid #615454;
     width: 100px;
     transition: 300ms ease;
     cursor: pointer;
-
-    &:hover{
-      transform: scale(1.2);
-    }
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   }
 
   @media screen and (max-width: 540px) {

@@ -8,7 +8,8 @@ export const useGenerateCards = (number) => {
     arrayCards.push({
       id: uuidv4(),
       cardBack,
-      cardImg: useGetRandomImgUrl(arrayCards)
+      cardImg: useGetRandomImgUrl(arrayCards),
+      isFlipped: true
     })
   }
   return arrayCards;

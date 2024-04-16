@@ -3,28 +3,27 @@ import { useNavigate } from "react-router-dom";
 import welcomeGif from '../../assets/welcome.gif'
 import { AvatarSelect, Container, ContainerLogin, ModalIsOpen } from "./styles";
 import { CgPokemon } from "react-icons/cg";
-import avatar1 from '../../assets/avatar1.png'
-import avatar2 from '../../assets/avatar2.png'
-import avatar3 from '../../assets/avatar3.png'
+import avatarSound from '../../assets/sounds/avatarSound.mp3';
 
-const Home = ({ setUserName, setNumberOfCards }) => {
+const Home = ({ setUserName, setNumberOfCards, setUserAvatar, userAvatar }) => {
 
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [level, setLevel] = useState('');
+  const [selectedAvatar, setSelectedAvatar] = useState('Null');
+
+  const arrayAvatar = [1, 2, 3];
+  const selectedAvatarSound = new Audio(avatarSound);
 
   const defineNumberOfCards = (level) => {
     switch (level) {
       case 'ease':
         return 5;
-
       case 'regular':
         return 8;
-
       case 'hard':
         return 15;
-
       default:
         break;
     }
@@ -35,14 +34,15 @@ const Home = ({ setUserName, setNumberOfCards }) => {
     navigate('/game');
     setUserName(name);
     setNumberOfCards(defineNumberOfCards(level));
+    setUserAvatar(`/avatars/avatar${selectedAvatar}.png`);
   }
 
   return (
     <Container>
       <ContainerLogin>
-        <h1>Bem vindo ao jogo da memória {<CgPokemon size={35} />}</h1>
+        <h1>Jogo da memória {<CgPokemon size={35} />}</h1>
 
-        <img src={welcomeGif} />
+        <img src={welcomeGif} alt="Gif do pokemon pikachu dançando"/>
 
         <form onSubmit={saveForm}>
           <input
@@ -64,9 +64,28 @@ const Home = ({ setUserName, setNumberOfCards }) => {
           <AvatarSelect>
             <p>Selecione um avatar:</p>
             <div>
-              <img src={avatar1} />
-              <img src={avatar2} />
-              <img src={avatar3} />
+              {
+                arrayAvatar.map(avatar => (
+                  <img 
+                    key={avatar}
+                    src={`/avatars/avatar${avatar}.png`}
+                    alt="imagem do avatar pokemon"
+                    selected={selectedAvatar === avatar}
+                    onClick={() => {
+                      if (selectedAvatar !== avatar) {
+                        setSelectedAvatar(avatar);
+                        selectedAvatarSound.play();
+                      } else {
+                        setSelectedAvatar('Null')
+                      }
+                    }}
+                    style={{
+                      transform: selectedAvatar === avatar ? 'scale(1.2)' : 'scale(1)',
+                      boxShadow: selectedAvatar === avatar ? '1px 1px 30px rgb(206, 76, 182)' : '3px 3px 10px rgba(0, 0, 0, 0.3)',
+                    }}
+                  />
+                ))
+              }
             </div>
 
           </AvatarSelect>

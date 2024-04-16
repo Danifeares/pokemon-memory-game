@@ -6,7 +6,7 @@ export const Card = styled.div`
   height: 100%;
   perspective: 1000px;
   transform-style: preserve-3d;
-  transform: ${({ $isFliped }) => $isFliped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
+  transform: ${({ $isFlipped }) => $isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   transition: transform 0.5s;
 `
 

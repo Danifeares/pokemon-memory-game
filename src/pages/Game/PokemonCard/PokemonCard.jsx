@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { BackFace, Card, FrontFace } from "./styles";
 
+const PokemonCard = ({ card, handleFlippedCard }) => {
 
-const PokemonCard = ({ card }) => {
-
-  const [isFliped, setIsFliped] = useState(true)
+  const [isFlipped, setIsFlipped] = useState(card.isFlipped)
 
   const handleClick = () => {
-    setIsFliped(!isFliped)
+    setIsFlipped(card.isFlipped);
+    handleFlippedCard(card);
   }
 
   return (
-    <Card onClick={() => handleClick()} $isFliped={isFliped} >
+    <Card onClick={() => handleClick()} $isFlipped={isFlipped} >
       <FrontFace $image={card.cardImg} />
       <BackFace $image={card.cardBack} />
     </Card>

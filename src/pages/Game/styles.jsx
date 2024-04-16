@@ -42,7 +42,38 @@ export const Navbar = styled.nav`
   gap: 32px;
   width: 100%;
   align-items: center;
+`
+
+export const NavCardUser = styled.div`
+  flex: 1.4;
+  display: flex;
   justify-content: space-around;
+  align-items: center;
+  gap: 16px;
+  font-size: 18px;
+  background-color: #f1c8df;
+  box-sizing: border-box;
+  border-radius: 16px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  color: #282626;
+  img {
+    border-radius: 50%;
+    width: 100px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  }
+  div {
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 10px;
+  }
+`
+
+export const NavButtons = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `
 
 export const SectionContainerList = styled.section`

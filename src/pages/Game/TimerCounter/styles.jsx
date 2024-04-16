@@ -10,7 +10,6 @@ export const Clock = styled.div`
   display: flex;
   flex-direction: column;
   line-height: 0;
-  border: 2px solid #e369c1;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
