@@ -6,6 +6,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px 0;
+  box-sizing: border-box;
 `
 
 export const ContainerLogin = styled.section`
@@ -17,13 +19,20 @@ export const ContainerLogin = styled.section`
   border-radius: 16px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  color: #2c2525;
+  color: #615454;
   gap: 16px;
   align-items: center;
   justify-content: center;
+  
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 20px;
+  }
 
   img {
-    width: 70%;
+    width: 50%;
   }
 
   form {
@@ -33,23 +42,68 @@ export const ContainerLogin = styled.section`
     gap: 16px;
 
     input {
-      padding: 16px;
-      font-size: 24px;
+      padding: 12px;
+      font-size: 16px;
+      color: #615454;
+      font-weight: bold;
       border-radius: 16px;
+      text-align: center;
       outline: none;
       border: none;
       box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #615454;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+      outline: none;
+      border: none;
+      border-radius: 16px;
+      text-align: center;
+    }
+    
   }
 
   @media screen and (max-width: 540px) {
     width: 280px;
-    
-    form > input {
-      font-size: 14px;
-    }
     img {
       width: 90%;
+    }
+  }
+`
+
+export const AvatarSelect = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  div {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  img {
+    border-radius: 50%;
+    border: 1px solid #615454;
+    width: 100px;
+    transition: 300ms ease;
+    cursor: pointer;
+
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
+
+  @media screen and (max-width: 540px) {
+    img {
+      width: 65px;
     }
   }
 `

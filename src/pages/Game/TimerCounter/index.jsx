@@ -3,7 +3,7 @@ import { Clock } from "./styles";
 
 const TimerCounter = ({ setGameTime }) => {
 
-  const [timeSeconds, setTimeSeconds] = useState(0);
+  const [timeSeconds, setTimeSeconds] = useState(4 * 60);
   //setGameTime(timeSeconds);
 
   const minutes = Math.floor(timeSeconds / 60);
@@ -12,9 +12,13 @@ const TimerCounter = ({ setGameTime }) => {
   const formatedSeconds = seconds.toString().padStart(2, '0');
 
   useEffect(() => {
-    setTimeout(() => {
-      setTimeSeconds(timeSeconds + 1)
-    }, 1000)
+    if (timeSeconds === 0) {
+      alert('zerou o tempo, chamar o error modal')
+    } else {
+      setTimeout(() => {
+        setTimeSeconds(timeSeconds - 1)
+      }, 1000)
+    } 
   }, [timeSeconds])
 
   return (

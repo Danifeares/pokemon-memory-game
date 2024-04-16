@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   position: relative;
-  width: 120px;
-  height: 167px;
+  width: 100%;
+  height: 100%;
   perspective: 1000px;
   transform-style: preserve-3d;
   transform: ${({ $isFliped }) => $isFliped ? 'rotateY(180deg)' : 'rotateY(0deg)'};

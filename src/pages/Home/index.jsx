@@ -1,34 +1,46 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ErrorModal from "./ErrorModal";
 import welcomeGif from '../../assets/welcome.gif'
-import { Container, ContainerLogin, ModalIsOpen } from "./styles";
+import { AvatarSelect, Container, ContainerLogin, ModalIsOpen } from "./styles";
+import { CgPokemon } from "react-icons/cg";
+import avatar1 from '../../assets/avatar1.png'
+import avatar2 from '../../assets/avatar2.png'
+import avatar3 from '../../assets/avatar3.png'
 
 const Home = ({ setUserName, setNumberOfCards }) => {
 
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
-  const [cards, setCards] = useState('');
-  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [level, setLevel] = useState('');
+
+  const defineNumberOfCards = (level) => {
+    switch (level) {
+      case 'ease':
+        return 5;
+
+      case 'regular':
+        return 8;
+
+      case 'hard':
+        return 15;
+
+      default:
+        break;
+    }
+  }
 
   const saveForm = (event) => {
     event.preventDefault();
-    if (cards > 15 || cards < 2) {
-      setOpenErrorModal(true)
-    } else {
-      navigate('/game');
-      setUserName(name);
-      setNumberOfCards(cards);
-      setName('');
-      setCards('');
-    }
+    navigate('/game');
+    setUserName(name);
+    setNumberOfCards(defineNumberOfCards(level));
   }
 
   return (
     <Container>
       <ContainerLogin>
-        <h1>Bem vindo ao jogo da memória!</h1>
+        <h1>Bem vindo ao jogo da memória {<CgPokemon size={35} />}</h1>
 
         <img src={welcomeGif} />
 
@@ -39,32 +51,31 @@ const Home = ({ setUserName, setNumberOfCards }) => {
             onChange={event => setName(event.target.value)}
             required
           />
-          <input
-            type="number"
-            placeholder="Quantidade de pares de cartas"
-            value={cards}
-            onChange={event => setCards(event.target.value)}
+          <select
+            onChange={event => setLevel(event.target.value)}
             required
-          />
-
-          {/* FALTA IMPLEMENTAÇÃO DE NÍVEIS DE DIFICULDADE:
-            <select>
+          >
+            <option value=''>Selecione a dificuldade</option>
             <option value='ease'>Fácil</option>
             <option value='regular'>Normal</option>
             <option value='hard'>Difícil</option>
-          </select> */}
+          </select>
+
+          <AvatarSelect>
+            <p>Selecione um avatar:</p>
+            <div>
+              <img src={avatar1} />
+              <img src={avatar2} />
+              <img src={avatar3} />
+            </div>
+
+          </AvatarSelect>
 
           <button>Iniciar</button>
         </form>
 
         <button onClick={() => navigate('/ranking')} >Ver Ranking</button>
       </ContainerLogin>
-
-      {openErrorModal ?
-        <ModalIsOpen>
-          {openErrorModal && <ErrorModal setOpenErrorModal={setOpenErrorModal} />}
-        </ModalIsOpen>
-        : undefined}
 
     </Container>
   )

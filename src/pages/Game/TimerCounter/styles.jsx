@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Clock = styled.div`
   background-color: #f1c8df;
-  max-width: 180px;
+  max-width: 100px;
   width: 100%;
-  height: 180px;
+  height: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,10 @@ export const Clock = styled.div`
   align-items: center;
   gap: 16px;
   box-sizing: border-box;
-  padding: 24px;
-  font-size: 24px;
+  font-size: 18px;
   color: #282626;
+  @media screen and (max-width: 540px) {
+    font-size: 12px;
+    gap: 6px;
+ }
 `

@@ -6,7 +6,8 @@ import { useState } from "react";
 
 function App() {
   const [userName, setUserName] = useState('');
-  const [numberOfCards, setNumberOfCards] = useState(4);
+  const [numberOfCards, setNumberOfCards] = useState(15);
+  
   return (
     <BrowserRouter>
       <Routes>
