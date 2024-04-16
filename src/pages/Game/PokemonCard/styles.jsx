@@ -6,6 +6,8 @@ export const Card = styled.div`
   height: 100%;
   perspective: 1000px;
   transform-style: preserve-3d;
+  opacity: ${({ $isMatched }) => $isMatched ? 0 : 1};
+  pointer-events: ${({ $isMatched }) => $isMatched ? 'none' : 'auto'};
   transform: ${({ $isFlipped }) => $isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   transition: transform 0.5s;
 `

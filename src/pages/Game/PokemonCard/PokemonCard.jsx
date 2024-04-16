@@ -11,7 +11,7 @@ const PokemonCard = ({ card, handleFlippedCard }) => {
   }
 
   return (
-    <Card onClick={() => handleClick()} $isFlipped={isFlipped} >
+    <Card onClick={() => handleClick()} $isFlipped={isFlipped} $isMatched={card.isMatched}>
       <FrontFace $image={card.cardImg} />
       <BackFace $image={card.cardBack} />
     </Card>

@@ -28,10 +28,13 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
       return item
     })
     setDuplicatedCardsArray(mappedFlippedCards)
+   // cardPairChecker()
   }
 
+console.log(duplicatedCardsArray)
+
   const cardPairChecker = () => {
-    const cardPair = duplicatedCardsArray.filter(card => card.isFlipped === false)
+    const cardPair = duplicatedCardsArray.filter(card => card.isFlipped === false && card.isMatched === false)
     
     const handleMatchedCard = (card) => {
       const mappedFlippedCards = duplicatedCardsArray.map((item) => {
