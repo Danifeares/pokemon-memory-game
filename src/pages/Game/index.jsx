@@ -18,7 +18,7 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
   const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
 
   const handleFlippedCard = (card) => {
-    const teste = duplicatedCardsArray.map((item) => {
+    const mappedFlippedCards = duplicatedCardsArray.map((item) => {
       if (item.cardId === card.cardId) {
         return {
           ...item,
@@ -27,39 +27,51 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
       }
       return item
     })
-
-    setDuplicatedCardsArray(teste)
+    setDuplicatedCardsArray(mappedFlippedCards)
   }
 
-  // AINDA NÃO ESTÁ FUNCIONAL:
-  // const cardPairChecker = () => {
-  //   const cardPair = duplicatedCardsArray.filter(card => card.isFlipped === false)
-  //   console.log({ cardPair })
-  //   if (cardPair.length === 2) {
-  //     if (cardPair[0].cardId === cardPair[1].cardId) {
-  //       return console.log('são iguais')
-  //     } else {
-  //       return console.log('são diferentes')
-  //       // setDuplicatedCardsArray(prevState => prevState.map(card => {
-  //       //   if (!card.isFlipped) {
-  //       //     return {
-  //       //       ...card,
-  //       //       isFlipped: true
-  //       //     };
-  //       //   }
-  //       //   return card;
-  //       // }));
-  //     }
-  //   } else {
-  //     return console.log('ainda não tem dois selecionados')
-  //   }
-  // }
+  const cardPairChecker = () => {
+    const cardPair = duplicatedCardsArray.filter(card => card.isFlipped === false)
+    
+    const handleMatchedCard = (card) => {
+      const mappedFlippedCards = duplicatedCardsArray.map((item) => {
+        if (item.id === card.id) {
+          return {
+            ...item,
+            isMatched: true
+          }
+        }
+        return item
+      })
+  
+      setDuplicatedCardsArray(mappedFlippedCards)
+    }
 
-  // useEffect(() => {
-  //   if (duplicatedCardsArray) {
-  //     cardPairChecker()
-  //   }
-  // }, [duplicatedCardsArray, cardPairChecker])
+    if (cardPair.length === 2) {
+      if (cardPair[0].id === cardPair[1].id) {
+        handleMatchedCard(cardPair[0]);
+        return console.log('são iguais')
+
+      } else {
+        return console.log('são diferentes')
+        // setDuplicatedCardsArray(prevState => prevState.map(card => {
+        //   if (!card.isFlipped) {
+        //     return {
+        //       ...card,
+        //       isFlipped: true
+        //     };
+        //   }
+        //   return card;
+        // }));
+      }
+    } else {
+      return console.log('ainda não tem dois selecionados')
+    }
+  }
+
+  useEffect(() => {
+    cardPairChecker()
+  }, [duplicatedCardsArray, cardPairChecker])
 
 
   return (

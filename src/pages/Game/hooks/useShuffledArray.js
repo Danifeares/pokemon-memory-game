@@ -4,6 +4,7 @@ export const useShuffledArray = (array) => {
   const duplicatedArray = [...array, ...array];
   const shuffledArray = duplicatedArray.map(item => ({
     cardId: uuidv4(),
+    isMatched: false,
     ...item
   }))
   shuffledArray.sort(() => Math.random() - 0.5);
