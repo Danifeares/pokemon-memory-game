@@ -13,7 +13,7 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
 
   const [gameTime, setGameTime] = useState(0);
   const [twoCardsFaceUp, setTwoCardsFaceUp] = useState(false);
-  const [userData, setUserData] = useState([]);
+  const [usersData, setUsersData] = useState([]);
   const [gameEnded, setGameEnded] = useState(false);
 
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
@@ -84,7 +84,7 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
       setGameEnded(true);
     }
     if (gameEnded) {
-      setUserData(prevUserData => {
+      setUsersData(prevUserData => {
         console.log(`gameTime2: ${gameTime}`)
         const newUserData = [
           ...prevUserData,
@@ -104,9 +104,9 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
     cardPairChecker();
     verifyEndedGame();
     console.log(`gameTime4: ${gameTime}`)
-    console.log(userData)
+    console.log(usersData)
     
-  }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, userData, gameEnded])
+  }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, usersData, gameEnded])
 
 
   return (
