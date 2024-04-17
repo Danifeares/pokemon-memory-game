@@ -5,7 +5,7 @@ import { AvatarSelect, Container, ContainerLogin, ModalIsOpen } from "./styles";
 import { CgPokemon } from "react-icons/cg";
 import avatarSound from '../../assets/sounds/avatarSound.mp3';
 
-const Home = ({ setUserName, setNumberOfCards, setUserAvatar, userAvatar }) => {
+const Home = ({ setUserName, setNumberOfCards, setUserAvatar }) => {
 
   const navigate = useNavigate();
 

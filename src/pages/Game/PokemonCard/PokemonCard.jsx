@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BackFace, Card, FrontFace } from "./styles";
 
-const PokemonCard = ({ card, handleFlippedCard }) => {
+const PokemonCard = ({ card, handleFlippedCard, twoCardsFaceUp }) => {
 
   const [isFlipped, setIsFlipped] = useState(card.isFlipped)
 
@@ -11,7 +11,12 @@ const PokemonCard = ({ card, handleFlippedCard }) => {
   }
 
   return (
-    <Card onClick={() => handleClick()} $isFlipped={isFlipped} $isMatched={card.isMatched}>
+    <Card
+      onClick={() => handleClick()}
+      $isFlipped={isFlipped}
+      $isMatched={card.isMatched}
+      $twoCardsFaceUp={twoCardsFaceUp}
+    >
       <FrontFace $image={card.cardImg} />
       <BackFace $image={card.cardBack} />
     </Card>
