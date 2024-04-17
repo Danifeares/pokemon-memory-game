@@ -1,8 +1,8 @@
 import { BackFace, Card, FrontFace } from "./styles";
 import cardClickSound from '../../../assets/sounds/cardClick.mp3';
 
-const PokemonCard = ({ card, handleFlippedCard, twoCardsFaceUp }) => {
-  const {isFlipped, isMatched, cardImg, cardBack} = card;
+const PokemonCard = ({ card, handleFlippedCard, twoCardsFaceUp, cardSelected }) => {
+  const {isFlipped, isMatched, cardImg, cardBack, cardId} = card;
  
   const clickSound = new Audio(cardClickSound);
 
@@ -15,6 +15,7 @@ const PokemonCard = ({ card, handleFlippedCard, twoCardsFaceUp }) => {
       onClick={() => {handleClick(); clickSound.play();}}
       $isFlipped={isFlipped}
       $isMatched={isMatched}
+      $isSelected={cardSelected?.cardId === cardId}
       $twoCardsFaceUp={twoCardsFaceUp}
     >
       <FrontFace $image={cardImg} />

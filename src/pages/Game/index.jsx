@@ -19,6 +19,8 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
   const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
 
+  const cardSelected = duplicatedCardsArray.find(card => card.isFlipped === false && card.isMatched === false )
+
   const handleFlippedCard = (card) => {
     const mappedFlippedCards = duplicatedCardsArray.map((item) => {
       if (item.cardId === card.cardId) {
@@ -141,6 +143,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
                   <ListItem key={i}>
                     <CardContainer $size={difficulty}>
                       <PokemonCard
+                        cardSelected={cardSelected}
                         handleFlippedCard={handleFlippedCard}
                         card={card}
                         twoCardsFaceUp={twoCardsFaceUp}
