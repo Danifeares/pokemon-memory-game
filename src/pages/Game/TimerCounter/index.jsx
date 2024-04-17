@@ -15,7 +15,7 @@ const TimerCounter = ({ setGameTime, gameEnded }) => {
 
   useEffect(() => {
     let timerId;
-  
+
     if (!gameEnded) {
       timerId = setTimeout(() => {
         setTimeSeconds(prevTime => {
@@ -28,15 +28,15 @@ const TimerCounter = ({ setGameTime, gameEnded }) => {
         });
         setTimeWillRunOut(timeSeconds < 15);
       }, 1000);
-    } 
+    }
     return () => clearTimeout(timerId);
   }, [timeSeconds, gameEnded]);
-  
+
 
   useEffect(() => {
     if (gameEnded && pausedTime === null) {
       setPausedTime(timeSeconds);
-    } 
+    }
     if (gameEnded && pausedTime !== null) {
       setGameTime(pausedTime);
     }

@@ -3,7 +3,6 @@ import NotFound from "../../components/NotFound";
 import { useGenerateCards } from "./hooks/useGenerateCards";
 import PokemonCard from "./PokemonCard/PokemonCard";
 import { useShuffledArray } from "./hooks/useShuffledArray";
-import { v4 as uuidv4 } from 'uuid';
 import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionContainerList, CardContainer, NavCardUser, NavButtons } from "./styles";
 import TimerCounter from "./TimerCounter";
 import { useEffect, useState } from "react";
@@ -114,7 +113,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
     <BackgroundDiv>
       <ContainerMax>
         {
-          !userName ? <NotFound /> :
+          //!userName ? <NotFound /> :
           <>
             <Navbar>
               <NavCardUser>

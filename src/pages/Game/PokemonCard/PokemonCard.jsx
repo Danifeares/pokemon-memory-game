@@ -1,18 +1,18 @@
-import { useState } from "react";
 import { BackFace, Card, FrontFace } from "./styles";
+import cardClickSound from '../../../assets/sounds/cardClick.mp3';
 
 const PokemonCard = ({ card, handleFlippedCard, twoCardsFaceUp }) => {
-  const {isFlipped, isMatched, cardImg, cardBack} = card
-  //const [isFlipped, setIsFlipped] = useState(card.isFlipped)
+  const {isFlipped, isMatched, cardImg, cardBack} = card;
+ 
+  const clickSound = new Audio(cardClickSound);
 
   const handleClick = () => {
-    
     handleFlippedCard(card);
   }
 
   return (
     <Card
-      onClick={() => handleClick()}
+      onClick={() => {handleClick(); clickSound.play();}}
       $isFlipped={isFlipped}
       $isMatched={isMatched}
       $twoCardsFaceUp={twoCardsFaceUp}
