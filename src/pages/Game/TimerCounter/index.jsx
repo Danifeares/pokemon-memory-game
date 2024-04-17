@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Clock } from "./styles";
+import { Clock, ModalIsOpen } from "./styles";
+import GameOverModal from "../../../components/GameOverModal";
 
-const TimerCounter = ({ setGameTime }) => {
-
-  const [timeSeconds, setTimeSeconds] = useState(4 * 60);
-  //setGameTime(timeSeconds);
+const TimerCounter = ({ setGameTime, gameEnded }) => {
+  const [timeSeconds, setTimeSeconds] = useState(15 * 60);
+  const [openGameOverModal, setOpenGameOverModal] = useState(false);
+  const [pausedTime, setPausedTime] = useState(null);
+  const [timeWillRunOut, setTimeWillRunOut] = useState(false)
 
   const minutes = Math.floor(timeSeconds / 60);
   const seconds = timeSeconds % 60;
@@ -12,25 +14,54 @@ const TimerCounter = ({ setGameTime }) => {
   const formatedSeconds = seconds.toString().padStart(2, '0');
 
   useEffect(() => {
-    if (timeSeconds === 0) {
-      alert('zerou o tempo, chamar o error modal')
-    } else {
-      setTimeout(() => {
-        setTimeSeconds(timeSeconds - 1)
-      }, 1000)
+    let timerId;
+  
+    if (!gameEnded) {
+      timerId = setTimeout(() => {
+        setTimeSeconds(prevTime => {
+          if (prevTime === 0) {
+            setOpenGameOverModal(true);
+            return prevTime;
+          } else {
+            return prevTime - 1;
+          }
+        });
+        setTimeWillRunOut(timeSeconds < 15);
+      }, 1000);
     } 
-  }, [timeSeconds])
+    return () => clearTimeout(timerId);
+  }, [timeSeconds, gameEnded]);
+  
+
+  useEffect(() => {
+    if (gameEnded && pausedTime === null) {
+      setPausedTime(timeSeconds);
+    } 
+    if (gameEnded && pausedTime !== null) {
+      setGameTime(pausedTime);
+      console.log(`pausedTime: ${pausedTime}`)
+    }
+  }, [gameEnded, pausedTime, setGameTime, timeSeconds]);
 
   return (
-    <Clock>
-      <p>Tempo:</p>
-      <div>
-        <span>{formatedMinutes}</span>
-        <span>:</span>
-        <span>{formatedSeconds}</span>
-      </div>
-    </Clock>
-  )
-}
+    <>
+      <Clock $background={timeWillRunOut}>
+        <p>Tempo:</p>
+        <div>
+          <span>{formatedMinutes}</span>
+          <span>:</span>
+          <span>{formatedSeconds}</span>
+        </div>
+      </Clock>
+      {
+        openGameOverModal &&
+        <ModalIsOpen>
+          {openGameOverModal && <GameOverModal setOpenGameOverModal={setOpenGameOverModal} />}
+        </ModalIsOpen>
+      }
+
+    </>
+  );
+};
 
 export default TimerCounter;

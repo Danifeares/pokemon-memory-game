@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import welcomeGif from '../../assets/welcome.gif'
-import { AvatarSelect, Container, ContainerLogin, ModalIsOpen } from "./styles";
+import { AvatarSelect, Container, ContainerLogin } from "./styles";
 import { CgPokemon } from "react-icons/cg";
 import avatarSound from '../../assets/sounds/avatarSound.mp3';
 

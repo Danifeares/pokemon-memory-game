@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Clock = styled.div`
-  background-color: #f1c8df;
+  background-color: ${({$background}) => $background ? '#f46a6a' : '#f1c8df'};
   max-width: 100px;
   width: 100%;
   height: auto;
@@ -21,4 +21,14 @@ export const Clock = styled.div`
     font-size: 12px;
     gap: 6px;
  }
+`
+
+export const ModalIsOpen = styled.div`
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
 `

@@ -57,12 +57,12 @@ export const NavCardUser = styled.div`
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   padding: 8px;
   color: #282626;
-  img {
+  > img {
     border-radius: 50%;
     width: 100px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
-  div {
+  > div {
     text-align: center;
     text-transform: uppercase;
     line-height: 10px;

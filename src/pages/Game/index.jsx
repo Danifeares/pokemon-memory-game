@@ -81,25 +81,32 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
     const mappedAllFlippedCards = duplicatedCardsArray.filter(item => item.isMatched);
 
     if (!gameEnded && mappedAllFlippedCards.length === duplicatedCardsArray.length) {
-      setUserData(prevUserData => [
-        ...prevUserData,
-        {
-          time: gameTime,
-          name: userName,
-          avatar: userAvatar,
-          difficulty: duplicatedCardsArray.length
-        }
-      ]);
       setGameEnded(true);
     }
+    if (gameEnded) {
+      setUserData(prevUserData => {
+        console.log(`gameTime2: ${gameTime}`)
+        const newUserData = [
+          ...prevUserData,
+          {
+            time: gameTime,
+            name: userName,
+            avatar: userAvatar,
+            difficulty: duplicatedCardsArray.length
+          }
+        ];
+        return newUserData;
+      });
+    }
   }
-
+  console.log(`gameTime3: ${gameTime}`)
   useEffect(() => {
     cardPairChecker();
     verifyEndedGame();
+    console.log(`gameTime4: ${gameTime}`)
     console.log(userData)
+    
   }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, userData, gameEnded])
-
 
 
   return (
