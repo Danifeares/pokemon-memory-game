@@ -5,7 +5,7 @@ import { AvatarSelect, Container, ContainerLogin } from "./styles";
 import { CgPokemon } from "react-icons/cg";
 import avatarSound from '../../assets/sounds/avatarSound.mp3';
 
-const Home = ({ setUserName, setNumberOfCards, setUserAvatar }) => {
+const Home = ({ setUserName, setNumberOfCards, setUserAvatar, setDifficulty }) => {
 
   const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ const Home = ({ setUserName, setNumberOfCards, setUserAvatar }) => {
     event.preventDefault();
     navigate('/game');
     setUserName(name);
+    setDifficulty(level);
     setNumberOfCards(defineNumberOfCards(level));
     setUserAvatar(`/avatars/avatar${selectedAvatar}.png`);
   }

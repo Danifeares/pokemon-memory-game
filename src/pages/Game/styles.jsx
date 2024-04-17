@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 const defineCardSize = (size) => {
   switch (size) {
-    case 5:
+    case 'ease':
       return {
         desktop: 190,
         mobile: 130
       };
-    case 8:
+    case 'regular':
       return {
         desktop: 130,
         mobile: 100
       };
-    case 15:
+    case 'hard':
       return {
         desktop: 100,
         mobile: 80

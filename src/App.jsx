@@ -7,7 +7,8 @@ import gameSound from './assets/sounds/Chopin - Nocturne op.9 No.2.mp3'
 
 function App() {
   const [userName, setUserName] = useState('');
-  const [numberOfCards, setNumberOfCards] = useState(5);
+  const [numberOfCards, setNumberOfCards] = useState(2);
+  const [difficulty, setDifficulty] = useState('ease');
   const [userAvatar, setUserAvatar] = useState(null);
 
   // const sound = new Audio(gameSound);
@@ -22,8 +23,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setUserName={setUserName} setNumberOfCards={setNumberOfCards} setUserAvatar={setUserAvatar} />} />
-          <Route path="/game" element={<Game userName={userName} numberOfCards={numberOfCards} userAvatar={userAvatar} />} />
+          <Route path="/" element={<Home setUserName={setUserName} setNumberOfCards={setNumberOfCards} setUserAvatar={setUserAvatar} setDifficulty={setDifficulty} difficulty={difficulty} />} />
+          <Route path="/game" element={<Game userName={userName} numberOfCards={numberOfCards} difficulty={difficulty} userAvatar={userAvatar} />} />
           <Route path="/ranking" element={<Ranking />} />
         </Routes>
       </BrowserRouter>

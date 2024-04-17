@@ -3,10 +3,10 @@ import { Clock, ModalIsOpen } from "./styles";
 import GameOverModal from "../../../components/GameOverModal";
 
 const TimerCounter = ({ setGameTime, gameEnded }) => {
-  const [timeSeconds, setTimeSeconds] = useState(15 * 60);
+  const [timeSeconds, setTimeSeconds] = useState(2 * 60);
   const [openGameOverModal, setOpenGameOverModal] = useState(false);
   const [pausedTime, setPausedTime] = useState(null);
-  const [timeWillRunOut, setTimeWillRunOut] = useState(false)
+  const [timeWillRunOut, setTimeWillRunOut] = useState(false);
 
   const minutes = Math.floor(timeSeconds / 60);
   const seconds = timeSeconds % 60;
@@ -39,7 +39,6 @@ const TimerCounter = ({ setGameTime, gameEnded }) => {
     } 
     if (gameEnded && pausedTime !== null) {
       setGameTime(pausedTime);
-      console.log(`pausedTime: ${pausedTime}`)
     }
   }, [gameEnded, pausedTime, setGameTime, timeSeconds]);
 

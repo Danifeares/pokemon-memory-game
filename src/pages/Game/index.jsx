@@ -8,13 +8,14 @@ import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionCo
 import TimerCounter from "./TimerCounter";
 import { useEffect, useState } from "react";
 
-const Game = ({ userName, numberOfCards, userAvatar }) => {
+const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
   const navigate = useNavigate();
 
   const [gameTime, setGameTime] = useState(0);
   const [twoCardsFaceUp, setTwoCardsFaceUp] = useState(false);
   const [usersData, setUsersData] = useState([]);
   const [gameEnded, setGameEnded] = useState(false);
+  const [end, setEnd] = useState(false);
 
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
   const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
@@ -83,7 +84,8 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
     if (!gameEnded && mappedAllFlippedCards.length === duplicatedCardsArray.length) {
       setGameEnded(true);
     }
-    if (gameEnded) {
+    if (gameEnded && !end && gameTime) {
+      setEnd(true)
       setUsersData(prevUserData => {
         console.log(`gameTime2: ${gameTime}`)
         const newUserData = [
@@ -92,28 +94,27 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
             time: gameTime,
             name: userName,
             avatar: userAvatar,
-            difficulty: duplicatedCardsArray.length
+            difficulty
           }
         ];
         return newUserData;
       });
     }
   }
-  console.log(`gameTime3: ${gameTime}`)
+
   useEffect(() => {
     cardPairChecker();
     verifyEndedGame();
-    console.log(`gameTime4: ${gameTime}`)
-    console.log(usersData)
+
     
-  }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, usersData, gameEnded])
+  }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, difficulty, usersData, gameEnded])
 
 
   return (
     <BackgroundDiv>
       <ContainerMax>
         {
-          //!userName ? <NotFound /> :
+          !userName ? <NotFound /> :
           <>
             <Navbar>
               <NavCardUser>
@@ -137,9 +138,9 @@ const Game = ({ userName, numberOfCards, userAvatar }) => {
 
             <SectionContainerList>
               <ContainerList>
-                {duplicatedCardsArray.map(card => (
-                  <ListItem key={uuidv4()}>
-                    <CardContainer $size={numberOfCards}>
+                {duplicatedCardsArray.map((card, i) => (
+                  <ListItem key={i}>
+                    <CardContainer $size={difficulty}>
                       <PokemonCard
                         handleFlippedCard={handleFlippedCard}
                         card={card}
