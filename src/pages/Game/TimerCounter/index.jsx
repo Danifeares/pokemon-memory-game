@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import { Clock, ModalIsOpen } from "./styles";
+import { Clock } from "./styles";
 import GameOverModal from "../../../components/GameOverModal";
+import { ModalIsOpen } from "../styles";
+import { convertSecondsToMinutes } from "../utils/convertSecondsToMinutes";
 
 const TimerCounter = ({ setGameTime, gameEnded }) => {
-  const [timeSeconds, setTimeSeconds] = useState(2 * 60);
+  const startingSeconds = 2 * 60;
+  const [initialTimeSeconds, setInitialTimeSeconds] = useState(startingSeconds);
   const [openGameOverModal, setOpenGameOverModal] = useState(false);
   const [pausedTime, setPausedTime] = useState(null);
   const [timeWillRunOut, setTimeWillRunOut] = useState(false);
 
-  const minutes = Math.floor(timeSeconds / 60);
-  const seconds = timeSeconds % 60;
-  const formatedMinutes = minutes.toString().padStart(2, '0');
-  const formatedSeconds = seconds.toString().padStart(2, '0');
+  const {timeSeconds, timeMinutes} = convertSecondsToMinutes(initialTimeSeconds);
 
   useEffect(() => {
     let timerId;
 
     if (!gameEnded) {
       timerId = setTimeout(() => {
-        setTimeSeconds(prevTime => {
+        setInitialTimeSeconds(prevTime => {
           if (prevTime === 0) {
             setOpenGameOverModal(true);
             return prevTime;
@@ -26,30 +26,31 @@ const TimerCounter = ({ setGameTime, gameEnded }) => {
             return prevTime - 1;
           }
         });
-        setTimeWillRunOut(timeSeconds < 15);
+        setTimeWillRunOut(initialTimeSeconds < 15);
       }, 1000);
     }
     return () => clearTimeout(timerId);
-  }, [timeSeconds, gameEnded]);
+  }, [initialTimeSeconds, gameEnded]);
 
 
   useEffect(() => {
     if (gameEnded && pausedTime === null) {
-      setPausedTime(timeSeconds);
+      setPausedTime(initialTimeSeconds);
     }
     if (gameEnded && pausedTime !== null) {
-      setGameTime(pausedTime);
+      setGameTime(startingSeconds - pausedTime);
     }
-  }, [gameEnded, pausedTime, setGameTime, timeSeconds]);
+    
+  }, [gameEnded, pausedTime, setGameTime, initialTimeSeconds]);
 
   return (
     <>
       <Clock $background={timeWillRunOut}>
         <p>Tempo:</p>
         <div>
-          <span>{formatedMinutes}</span>
+          <span>{timeMinutes}</span>
           <span>:</span>
-          <span>{formatedSeconds}</span>
+          <span>{timeSeconds}</span>
         </div>
       </Clock>
       {

@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import NotFound from "../../components/NotFound";
-import { useGenerateCards } from "./hooks/useGenerateCards";
+import { useGenerateCards } from "./utils/useGenerateCards";
 import PokemonCard from "./PokemonCard/PokemonCard";
-import { useShuffledArray } from "./hooks/useShuffledArray";
-import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionContainerList, CardContainer, NavCardUser, NavButtons } from "./styles";
+import { useShuffledArray } from "./utils/useShuffledArray";
+import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionContainerList, CardContainer, NavCardUser, NavButtons, ModalIsOpen } from "./styles";
 import TimerCounter from "./TimerCounter";
 import { useEffect, useState } from "react";
+import EndGameModal from "../../components/EndGameModal";
 
 const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
   const [usersData, setUsersData] = useState([]);
   const [gameEnded, setGameEnded] = useState(false);
   const [end, setEnd] = useState(false);
+  const [openEndGameModal, setOpenEndGameModal] = useState(false);
 
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
   const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
@@ -88,7 +90,6 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
     if (gameEnded && !end && gameTime) {
       setEnd(true)
       setUsersData(prevUserData => {
-        console.log(`gameTime2: ${gameTime}`)
         const newUserData = [
           ...prevUserData,
           {
@@ -100,6 +101,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
         ];
         return newUserData;
       });
+      setOpenEndGameModal(true);
     }
   }
 
@@ -158,6 +160,12 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
         }
 
       </ContainerMax>
+      {
+        openEndGameModal &&
+        <ModalIsOpen>
+          {openEndGameModal && <EndGameModal setOpenEndGameModal={setOpenEndGameModal} userName={userName} gameTime={gameTime}/>}
+        </ModalIsOpen>
+      }
     </BackgroundDiv>
   )
 }

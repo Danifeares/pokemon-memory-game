@@ -11,13 +11,13 @@ function App() {
   const [difficulty, setDifficulty] = useState('ease');
   const [userAvatar, setUserAvatar] = useState(null);
 
-  const sound = new Audio(gameSound);
+  // const sound = new Audio(gameSound);
 
-  useEffect(() => {
-    sound.loop;
-    sound.autoplay;
-    sound.play();
-  }, []);
+  // useEffect(() => {
+  //   sound.loop;
+  //   sound.autoplay;
+  //   sound.play();
+  // }, []);
 
   return (
     <>
