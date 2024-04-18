@@ -33,7 +33,7 @@ export const Card = styled.div`
   opacity: ${({ $isMatched }) => $isMatched ? 0 : 1};
   pointer-events: ${({ $isMatched, $twoCardsFaceUp, $isSelected }) => $isMatched || $twoCardsFaceUp || $isSelected ? 'none' : 'auto'};
   transform: ${({ $isFlipped }) => $isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
-  transition: transform 0.5s;
+  transition: ${({$isMatched}) => $isMatched ? '2s' : '0.5s'};
   
   @media screen and (max-width: 540px) {
    width: ${({ $size }) => defineCardSize($size).mobile}px;

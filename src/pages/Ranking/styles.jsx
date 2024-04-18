@@ -8,6 +8,7 @@ export const RankingContainer = styled.div`
   box-sizing: border-box;
   min-height: 100vh;
   width: 100%;
+  background: linear-gradient(180deg, rgba(174,223,238,1) 19%, rgba(238,174,202,1) 77%);
   > img {
     width: 500px;
   }
@@ -62,7 +63,7 @@ export const ScoreboardContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   @media screen and (max-width: 768px) {
     width: 100%;
   }

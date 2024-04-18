@@ -10,28 +10,7 @@ function App() {
   const [numberOfCards, setNumberOfCards] = useState(0);
   const [difficulty, setDifficulty] = useState(null);
   const [userAvatar, setUserAvatar] = useState(null);
-  const [usersData, setUsersData] = useState([
-    {name: 'User1', time: 55, avatar: '/avatars/avatar1.png', difficulty: 'ease', penalties: 2},
-    {name: 'User2', time: 45, avatar: '/avatars/avatar2.png', difficulty: 'ease', penalties: 5},
-    {name: 'User3', time: 21, avatar: '/avatars/avatar3.png', difficulty: 'hard', penalties: 6},
-    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease', penalties: 0},
-    {name: 'User1', time: 55, avatar: '/avatars/avatar1.png', difficulty: 'ease', penalties: 2},
-    {name: 'User2', time: 45, avatar: '/avatars/avatar2.png', difficulty: 'ease', penalties: 5},
-    {name: 'User3', time: 21, avatar: '/avatars/avatar3.png', difficulty: 'hard', penalties: 6},
-    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease', penalties: 0},
-    {name: 'User1', time: 55, avatar: '/avatars/avatar1.png', difficulty: 'ease', penalties: 2},
-    {name: 'User2', time: 45, avatar: '/avatars/avatar2.png', difficulty: 'ease', penalties: 5},
-    {name: 'User3', time: 21, avatar: '/avatars/avatar3.png', difficulty: 'hard', penalties: 6},
-    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease', penalties: 0},
-    {name: 'User1', time: 55, avatar: '/avatars/avatar1.png', difficulty: 'ease', penalties: 2},
-    {name: 'User2', time: 45, avatar: '/avatars/avatar2.png', difficulty: 'ease', penalties: 5},
-    {name: 'User3', time: 21, avatar: '/avatars/avatar3.png', difficulty: 'hard', penalties: 6},
-    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease', penalties: 0},
-    {name: 'User1', time: 55, avatar: '/avatars/avatar1.png', difficulty: 'ease', penalties: 2},
-    {name: 'User2', time: 45, avatar: '/avatars/avatar2.png', difficulty: 'ease', penalties: 5},
-    {name: 'User3', time: 21, avatar: '/avatars/avatar3.png', difficulty: 'hard', penalties: 6},
-    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease', penalties: 0},
-  ]);
+  const [usersData, setUsersData] = useState([]);
 
   // const sound = new Audio(gameSound);
 
