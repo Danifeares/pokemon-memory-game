@@ -17,6 +17,13 @@ export const ListItem = styled.li`
   align-items: center;
   width: 100%;
   border-radius: 12px;
+  padding: 6px 0;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+  transition: 300ms ease;
+
+  &:hover {
+    transform: scale(1.04);
+  }
   
   > img {
     width: 70px;
@@ -26,5 +33,12 @@ export const ListItem = styled.li`
   > span {
     color: #3b3737;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 540px) {
+    //flex-direction: column;
   }
 `

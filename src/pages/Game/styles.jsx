@@ -1,28 +1,5 @@
 import styled from "styled-components";
 
-// const defineCardSize = (size) => {
-//   switch (size) {
-//     case 'ease':
-//       return {
-//         desktop: 190,
-//         mobile: 130
-//       };
-//     case 'regular':
-//       return {
-//         desktop: 130,
-//         mobile: 100
-//       };
-//     case 'hard':
-//       return {
-//         desktop: 100,
-//         mobile: 80
-//       };
-
-//     default:
-//       break;
-//   }
-// }
-
 export const BackgroundDiv = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -42,6 +19,10 @@ export const Navbar = styled.nav`
   gap: 32px;
   width: 100%;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
 `
 
 export const NavCardUser = styled.div`
@@ -67,6 +48,11 @@ export const NavCardUser = styled.div`
     text-transform: uppercase;
     line-height: 10px;
   }
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    font-size: 12px;
+  }
 `
 
 export const NavButtons = styled.div`
@@ -74,6 +60,10 @@ export const NavButtons = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+  }
 `
 
 export const SectionContainerList = styled.section`
@@ -102,15 +92,6 @@ export const ListItem = styled.li`
   list-style: none;
 `
 
-// export const CardContainer = styled.div`
-//  width: ${({$size}) => defineCardSize($size).desktop}px;
-//  height: auto;
-//  aspect-ratio: 0.716;
-
-//  @media screen and (max-width: 540px) {
-//   width: ${({$size}) => defineCardSize($size).mobile}px;
-//  }
-// `
 export const ModalIsOpen = styled.div`
   position: fixed;
   z-index: 1;

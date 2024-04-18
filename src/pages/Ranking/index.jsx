@@ -29,6 +29,7 @@ const Ranking = ({ usersData }) => {
 
     for (const difficulty in organizedUsersByDifficulty) {
       organizedUsersByDifficulty[difficulty].sort((a, b) => b.score - a.score);
+      organizedUsersByDifficulty[difficulty] = organizedUsersByDifficulty[difficulty].slice(0, 10);
     }
 
     return organizedUsersByDifficulty;

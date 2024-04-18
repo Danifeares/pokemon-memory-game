@@ -10,7 +10,15 @@ export const RankingContainer = styled.div`
   width: 100%;
   > img {
     width: 500px;
-    margin-top: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 24px 12px;
+  }
+  @media screen and (max-width: 540px) {
+    > img {
+      width: 250px;
+    }
   }
 `
 
@@ -38,9 +46,15 @@ export const ButtonsContainer = styled.div`
       align-items: center;
       justify-content: center;
     }
-
   }
   
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    > div:first-child {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
 `
 
 export const ScoreboardContainer = styled.section`
@@ -48,4 +62,8 @@ export const ScoreboardContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `
