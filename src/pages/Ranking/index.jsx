@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ButtonsContainer, RankingContainer, ScoreboardContainer } from "./styles";
 import Scoreboard from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
+import imgRanking from '../../assets/ranking.png'
 
 const Ranking = ({ usersData }) => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Ranking = ({ usersData }) => {
 
   return (
     <RankingContainer>
-      <h1>Ranking com as melhores pontuações:</h1>
+      <img src={imgRanking} />
       <ButtonsContainer>
         <div>
           <button onClick={() => navigate('/')} >Home</button>

@@ -8,6 +8,10 @@ export const RankingContainer = styled.div`
   box-sizing: border-box;
   min-height: 100vh;
   width: 100%;
+  > img {
+    width: 500px;
+    margin-top: 0;
+  }
 `
 
 export const ButtonsContainer = styled.div`
