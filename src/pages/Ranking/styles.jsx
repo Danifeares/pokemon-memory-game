@@ -13,20 +13,35 @@ export const RankingContainer = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   box-sizing: border-box;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
   width: 80%;
-  > p {
-    background-color: #f1c8df;
-    color: #3b3737;
-    font-weight: bold;
-    border-radius: 10px;
-    text-align: center;
-    padding: 16px 0;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
-    height: 50px;
+  > div {
     width: 100%;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    > p {
+      background-color: #f1c8df;
+      color: #3b3737;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+      height: 50px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
   }
   
+`
+
+export const ScoreboardContainer = styled.section`
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

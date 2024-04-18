@@ -11,10 +11,10 @@ function App() {
   const [difficulty, setDifficulty] = useState(null);
   const [userAvatar, setUserAvatar] = useState(null);
   const [usersData, setUsersData] = useState([
-    {name: 'User1', time: 55, avatar: '/avatars/avatar01.png', difficulty: 'ease'},
-    {name: 'User2', time: 45, avatar: '/avatars/avatar02.png', difficulty: 'regular'},
-    {name: 'User3', time: 21, avatar: '/avatars/avatar03.png', difficulty: 'hard'},
-    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease'},
+    {name: 'User1', time: 55, avatar: '/avatars/avatar1.png', difficulty: 'ease', penalties: 2},
+    {name: 'User2', time: 45, avatar: '/avatars/avatar2.png', difficulty: 'ease', penalties: 5},
+    {name: 'User3', time: 21, avatar: '/avatars/avatar3.png', difficulty: 'hard', penalties: 6},
+    {name: 'User4', time: 21, avatar: '/avatars/avatarNull.png', difficulty: 'ease', penalties: 0},
   ]);
 
   // const sound = new Audio(gameSound);

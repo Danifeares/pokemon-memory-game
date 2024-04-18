@@ -18,6 +18,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
   const [gameEnded, setGameEnded] = useState(false);
   const [end, setEnd] = useState(false);
   const [openEndGameModal, setOpenEndGameModal] = useState(false);
+  const [penalties, setPenalties] = useState(0);
 
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
   const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
@@ -61,6 +62,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
       return item;
     })
     setDuplicatedCardsArray(mappedUnmatchCards)
+    setPenalties(penalties + 1)
   }
 
   const cardPairChecker = () => {
@@ -97,6 +99,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
             time: gameTime,
             name: userName,
             avatar: userAvatar,
+            penalties,
             difficulty
           }
         ];
@@ -110,8 +113,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
     cardPairChecker();
     verifyEndedGame();
 
-
-  }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, difficulty, usersData, gameEnded])
+  }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, difficulty, usersData, gameEnded, penalties])
 
 
   return (
