@@ -18,7 +18,7 @@ const Home = ({ setUserName, setNumberOfCards, setUserAvatar, setDifficulty }) =
 
   const defineNumberOfCards = (level) => {
     switch (level) {
-      case 'ease':
+      case 'easy':
         return 5;
       case 'regular':
         return 8;
@@ -57,7 +57,7 @@ const Home = ({ setUserName, setNumberOfCards, setUserAvatar, setDifficulty }) =
             required
           >
             <option value=''>Selecione a dificuldade</option>
-            <option value='ease'>Fácil</option>
+            <option value='easy'>Fácil</option>
             <option value='regular'>Normal</option>
             <option value='hard'>Difícil</option>
           </select>

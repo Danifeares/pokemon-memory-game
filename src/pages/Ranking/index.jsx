@@ -6,7 +6,7 @@ import imgRanking from '../../assets/ranking.png'
 
 const Ranking = ({ usersData }) => {
   const navigate = useNavigate();
-  const [ranking, setRanking] = useState({ ease: false, regular: false, hard: false });
+  const [ranking, setRanking] = useState('');
   const [organizedUsers, setOrganizedUsers] = useState({});
 
   const generateScore = (time, penalties) => {
@@ -17,7 +17,7 @@ const Ranking = ({ usersData }) => {
 
   const organizeUsers = (arrayUsers) => {
     const organizedUsersByDifficulty = {
-      ease: [],
+      easy: [],
       regular: [],
       hard: []
     };
@@ -35,6 +35,12 @@ const Ranking = ({ usersData }) => {
     return organizedUsersByDifficulty;
   }
 
+  const scoreboards = {
+    easy: <Scoreboard array={organizedUsers['easy']} />,
+    regular: <Scoreboard array={organizedUsers['regular']} />,
+    hard: <Scoreboard array={organizedUsers['hard']} />,
+  }
+
   useEffect(() => {
     setOrganizedUsers(organizeUsers(usersData));
   }, [usersData])
@@ -48,24 +54,22 @@ const Ranking = ({ usersData }) => {
           <p>Selecione a dificuldade:</p>
         </div>
         <div>
-          <button onClick={() => setRanking(
-            { ease: !ranking.ease, regular: false, hard: false }
-          )} >Fácil</button>
+          <button onClick={() => setRanking('easy')}>
+            Fácil
+          </button>
 
-          <button onClick={() => setRanking(
-            { ease: false, regular: !ranking.regular, hard: false }
-          )} >Normal</button>
+          <button onClick={() => setRanking('regular')}>
+            Normal
+          </button>
 
-          <button onClick={() => setRanking(
-            { ease: false, regular: false, hard: !ranking.hard }
-          )} >Difícil</button>
+          <button onClick={() => setRanking('hard')}>
+            Difícil
+          </button>
 
         </div>
       </ButtonsContainer>
       <ScoreboardContainer>
-        {ranking.ease && <Scoreboard array={organizedUsers['ease']} />}
-        {ranking.regular && <Scoreboard array={organizedUsers['regular']} />}
-        {ranking.hard && <Scoreboard array={organizedUsers['hard']} />}
+        {scoreboards[ranking]}
       </ScoreboardContainer>
     </RankingContainer>
   )
