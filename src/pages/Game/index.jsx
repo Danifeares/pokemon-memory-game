@@ -3,17 +3,18 @@ import NotFound from "../../components/NotFound";
 import { useGenerateCards } from "./utils/useGenerateCards";
 import PokemonCard from "./PokemonCard/PokemonCard";
 import { useShuffledArray } from "./utils/useShuffledArray";
-import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionContainerList, CardContainer, NavCardUser, NavButtons, ModalIsOpen } from "./styles";
+import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionContainerList, NavCardUser, NavButtons, ModalIsOpen } from "./styles";
 import TimerCounter from "./TimerCounter";
 import { useEffect, useState } from "react";
 import EndGameModal from "../../components/EndGameModal";
+import cardClickSound from '../../assets/sounds/cardClick.mp3';
 
-const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
+const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setUsersData }) => {
   const navigate = useNavigate();
-
+  const clickSound = new Audio(cardClickSound);
+  
   const [gameTime, setGameTime] = useState(0);
   const [twoCardsFaceUp, setTwoCardsFaceUp] = useState(false);
-  const [usersData, setUsersData] = useState([]);
   const [gameEnded, setGameEnded] = useState(false);
   const [end, setEnd] = useState(false);
   const [openEndGameModal, setOpenEndGameModal] = useState(false);
@@ -21,7 +22,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
   const generatedCardsArray = useGenerateCards(Number(numberOfCards));
   const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
 
-  const cardSelected = duplicatedCardsArray.find(card => card.isFlipped === false && card.isMatched === false )
+  const cardSelected = duplicatedCardsArray.find(card => card.isFlipped === false && card.isMatched === false)
 
   const handleFlippedCard = (card) => {
     const mappedFlippedCards = duplicatedCardsArray.map((item) => {
@@ -109,7 +110,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
     cardPairChecker();
     verifyEndedGame();
 
-    
+
   }, [duplicatedCardsArray, cardPairChecker, gameTime, userName, userAvatar, difficulty, usersData, gameEnded])
 
 
@@ -117,53 +118,53 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty }) => {
     <BackgroundDiv>
       <ContainerMax>
         {
-          //!userName ? <NotFound /> :
-          <>
-            <Navbar>
-              <NavCardUser>
-                <img src={userAvatar} />
-                <div>
-                  <p>Bem-vindo(a),</p>
-                  {userName}!
-                </div>
-                <TimerCounter setGameTime={setGameTime} gameEnded={gameEnded} />
-              </NavCardUser>
+          !userName ? <NotFound /> :
+            <>
+              <Navbar>
+                <NavCardUser>
+                  <img src={userAvatar} />
+                  <div>
+                    <p>Bem-vindo(a),</p>
+                    {userName}!
+                  </div>
+                  <TimerCounter setGameTime={setGameTime} gameEnded={gameEnded} />
+                </NavCardUser>
 
-              <NavButtons>
-                <button
-                  onClick={() => navigate('/')}
-                >Reiniciar</button>
-                <button
-                  onClick={() => navigate('/ranking')}
-                >Ranking</button>
-              </NavButtons>
-            </Navbar>
+                <NavButtons>
+                  <button
+                    onClick={() => navigate('/')}
+                  >Reiniciar</button>
+                  <button
+                    onClick={() => navigate('/ranking')}
+                  >Ranking</button>
+                </NavButtons>
+              </Navbar>
 
-            <SectionContainerList>
-              <ContainerList>
-                {duplicatedCardsArray.map((card, i) => (
-                  <ListItem key={i}>
-                    <CardContainer $size={difficulty}>
+              <SectionContainerList>
+                <ContainerList>
+                  {duplicatedCardsArray.map((card, i) => (
+                    <ListItem key={i}>
                       <PokemonCard
+                        difficulty={difficulty}
                         cardSelected={cardSelected}
                         handleFlippedCard={handleFlippedCard}
                         card={card}
                         twoCardsFaceUp={twoCardsFaceUp}
+                        clickSound={clickSound}
                       />
-                    </CardContainer>
-                  </ListItem>
-                ))}
-              </ContainerList>
+                    </ListItem>
+                  ))}
+                </ContainerList>
 
-            </SectionContainerList>
-          </>
+              </SectionContainerList>
+            </>
         }
 
       </ContainerMax>
       {
         openEndGameModal &&
         <ModalIsOpen>
-          {openEndGameModal && <EndGameModal setOpenEndGameModal={setOpenEndGameModal} userName={userName} gameTime={gameTime}/>}
+          {openEndGameModal && <EndGameModal setOpenEndGameModal={setOpenEndGameModal} userName={userName} gameTime={gameTime} />}
         </ModalIsOpen>
       }
     </BackgroundDiv>

@@ -1,23 +1,32 @@
-const Ranking = () => {
+import { useState } from "react";
+import { ButtonsContainer, RankingContainer } from "./styles";
+
+const Ranking = ({ usersData }) => {
+  const [ranking, setRanking] = useState({ ease: false, regular: false, hard: false });
+
   return (
-    <section>
-      <h1>Confira o ranking com as melhores pontuações:</h1>
-      <ul>
-        <li>
-          vou receber aqui o nome do usuário e o tempo dele. Preciso que
-          ocorra uma lógica onde os tempos serão comparados e rankeados, e o usuário
-          com menor tempo esteja em primeiro lugar.
-        </li>
-        <li>
-          cada li terá de ser renderizao automaticamente e de forma dinâmica, assim que
-          finalizado o game.
-        </li>
-        <li>
-          Na finalização do game seria interessante um modal aparecer na tela, informando
-          quanto tempo o usuário levou, e direcionando para o ranking.
-        </li>
-      </ul>
-    </section>
+    <RankingContainer>
+      <h1>Ranking com as melhores pontuações:</h1>
+      <ButtonsContainer>
+        <p>Selecione a dificuldade:</p>
+        <button onClick={() => setRanking(
+          { ease: !ranking.ease, regular: false, hard: false }
+        )} >Fácil</button>
+
+        <button onClick={() => setRanking(
+          { ease: false, regular: !ranking.regular, hard: false }
+        )} >Normal</button>
+        
+        <button onClick={() => setRanking(
+          { ease: false, regular: false, hard: !ranking.hard })
+        } >Difícil</button>
+      </ButtonsContainer>
+      <section>
+        {ranking.ease && 'ranking fácil renderizado'}
+        {ranking.regular && 'ranking normal renderizado'}
+        {ranking.hard && 'ranking dificil renderizado'}
+      </section>
+    </RankingContainer>
   )
 }
 
