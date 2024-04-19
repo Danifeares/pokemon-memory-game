@@ -1,11 +1,12 @@
 # Desafio Jogo da Memória
+![desafio pokedex (2)](https://github.com/Danifeares/pokemon-memory-game/assets/117787402/13b2b923-1f64-4631-8c57-1dad4611acc8)
 
 <img alt="Status" src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow"> 
 
 **Você pode conferir o jogo aqui:** 
 [![Deploy](https://img.shields.io/badge/Deploy-f1c8df?style=for-the-badge&logo=github)](http://pokemon-memory-game-swart.vercel.app/)
 
-*Observação: Vá nas configurações do seu navegador, e altere a permissão de som, em caso de estar negativa ou automática para "permitido", para que a música de fundo toque*
+*Observação: Vá nas configurações do seu navegador, e altere a permissão de som, em caso de estar negativa ou automática para "permitido", para que a música de fundo toque.*
 
 ## Descrição
 O projeto consiste em um jogo da memória, desenvolvido em React.js. O usuário pode interagir com esse jogo inserindo seu nome, escolhendo a dificuldade e o avatar, e então jogando. Seu desempenho é salvo em um ranking, que pode ser acessado por todos, e exibe as 10 maiores pontuações de cada categoria de dificuldade (fácil, normal e difícil).
