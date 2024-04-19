@@ -19,11 +19,11 @@ const Home = ({ setUserName, setNumberOfCards, setUserAvatar, setDifficulty }) =
   const defineNumberOfCards = (level) => {
     switch (level) {
       case 'easy':
-        return 5;
+        return 6;
       case 'regular':
         return 8;
       case 'hard':
-        return 15;
+        return 12;
       default:
         break;
     }

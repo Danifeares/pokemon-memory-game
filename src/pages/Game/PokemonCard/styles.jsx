@@ -9,13 +9,13 @@ const defineCardSize = (size) => {
       };
     case 'regular':
       return {
-        desktop: 130,
-        mobile: 100
+        desktop: 140,
+        mobile: 95
       };
     case 'hard':
       return {
-        desktop: 100,
-        mobile: 80
+        desktop: 125,
+        mobile: 95
       };
 
     default:
