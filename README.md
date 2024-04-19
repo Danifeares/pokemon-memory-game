@@ -2,6 +2,8 @@
 
 <img alt="Status" src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow"> 
 
+[![Deploy](https://img.shields.io/badge/Deploy-f1c8df?style=for-the-badge&logo=github)](http://pokemon-memory-game-swart.vercel.app/)
+
 ## Descrição
 O projeto consiste em um jogo da memória, desenvolvido em React.js. O usuário pode interagir com esse jogo inserindo seu nome, escolhendo a dificuldade e o avatar, e então jogando. Seu desempenho é salvo em um ranking, que pode ser acessado por todos, e exibe as 10 maiores pontuações de cada categoria de dificuldade (fácil, normal e difícil).
 
