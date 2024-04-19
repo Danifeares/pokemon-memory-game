@@ -7,8 +7,8 @@ import gameSound from './assets/sounds/Chopin - Nocturne op.9 No.2.mp3'
 
 function App() {
   const [userName, setUserName] = useState('');
-  const [numberOfCards, setNumberOfCards] = useState(0);
-  const [difficulty, setDifficulty] = useState(null);
+  const [numberOfCards, setNumberOfCards] = useState(2);
+  const [difficulty, setDifficulty] = useState('easy');
   const [userAvatar, setUserAvatar] = useState(null);
   const [usersData, setUsersData] = useState([]);
 
