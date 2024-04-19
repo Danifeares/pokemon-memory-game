@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useVerifyCardPair } from "./hooks/useVerifyCardPair";
 import { useGenerateCards } from "./hooks/useGenerateCards";
+import { useVerifyCardPair } from "./hooks/useVerifyCardPair";
+import { useVerifyEndedGame } from "./hooks/useVerifyEndedGame";
 
 import NotFound from "../../components/NotFound";
 import EndGameModal from "../../components/EndGameModal";
@@ -17,13 +17,9 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
   const navigate = useNavigate();
   const clickSound = new Audio(cardClickSound);
 
-  const [gameTime, setGameTime] = useState(0);
-  const [gameEnded, setGameEnded] = useState(false);
-  const [end, setEnd] = useState(false);
-  const [openEndGameModal, setOpenEndGameModal] = useState(false);
-
   const { duplicatedCardsArray, setDuplicatedCardsArray } = useGenerateCards(numberOfCards);
   const { twoCardsFaceUp, penalties } = useVerifyCardPair(duplicatedCardsArray, setDuplicatedCardsArray);
+  const {gameTime, setGameTime, gameEnded, setOpenEndGameModal, openEndGameModal} = useVerifyEndedGame(penalties, difficulty, usersData, setUsersData, duplicatedCardsArray, userName, userAvatar);
 
   const cardSelected = duplicatedCardsArray.find(card => card.isFlipped === false && card.isMatched === false)
 
@@ -39,36 +35,6 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
     })
     setDuplicatedCardsArray(mappedFlippedCards)
   }
-
-  const verifyEndedGame = () => {
-    const mappedAllFlippedCards = duplicatedCardsArray.filter(item => item.isMatched);
-
-    if (!gameEnded && mappedAllFlippedCards.length === duplicatedCardsArray.length) {
-      setGameEnded(true);
-    }
-    if (gameEnded && !end && gameTime) {
-      setEnd(true)
-      setUsersData(prevUserData => {
-        const newUserData = [
-          ...prevUserData,
-          {
-            time: gameTime,
-            name: userName,
-            avatar: userAvatar,
-            penalties,
-            difficulty
-          }
-        ];
-        return newUserData;
-      });
-      setOpenEndGameModal(true);
-    }
-  }
-
-  useEffect(() => {
-    verifyEndedGame();
-  }, [duplicatedCardsArray, gameTime, userName, userAvatar, difficulty, usersData, gameEnded])
-
 
   return (
     <BackgroundDiv>
