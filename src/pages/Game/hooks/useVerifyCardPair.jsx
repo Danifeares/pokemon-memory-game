@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
-import { useGenerateCards } from "../utils/useGenerateCards";
-import { useShuffledArray } from "../utils/useShuffledArray";
 
-export function useVerifyCardPair(numberOfCards) {
+export function useVerifyCardPair(duplicatedCardsArray, setDuplicatedCardsArray) {
   const [penalties, setPenalties] = useState(0);
   const [twoCardsFaceUp, setTwoCardsFaceUp] = useState(false);
-
-  const generatedCardsArray = useGenerateCards(Number(numberOfCards));
-  const [duplicatedCardsArray, setDuplicatedCardsArray] = useState(useShuffledArray(generatedCardsArray));
-  
 
   const handleMatchedCard = (card) => {
     const mappedMatchedCards = duplicatedCardsArray.map((item) => {
@@ -62,8 +56,6 @@ export function useVerifyCardPair(numberOfCards) {
   
   return {
     twoCardsFaceUp,
-    duplicatedCardsArray,
-    setDuplicatedCardsArray,
     penalties
   }
 }
