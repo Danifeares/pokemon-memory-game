@@ -1,7 +1,7 @@
 # Desafio Jogo da Memória
 ![desafio pokedex (2)](https://github.com/Danifeares/pokemon-memory-game/assets/117787402/13b2b923-1f64-4631-8c57-1dad4611acc8)
 
-<img alt="Status" src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow"> 
+<img alt="Status" src="https://img.shields.io/badge/Status-Finalizado-lightgreen"> 
 
 **Você pode conferir o jogo aqui:** 
 [![Deploy](https://img.shields.io/badge/Deploy-f1c8df?style=for-the-badge&logo=github)](http://pokemon-memory-game-swart.vercel.app/)
