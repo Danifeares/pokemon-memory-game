@@ -15,7 +15,6 @@ export const ContainerModal = styled.div`
   transform: translate(-50%, -50%);
   left: 50%;
   animation: fadeIn 1s ease;
-  line-height: 0;
   align-items: center;
   gap: 6px;
 
