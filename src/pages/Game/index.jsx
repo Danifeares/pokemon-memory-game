@@ -15,11 +15,26 @@ import { BackgroundDiv, ContainerMax, ContainerList, ListItem, Navbar, SectionCo
 
 const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setUsersData }) => {
   const navigate = useNavigate();
-  const clickSound = new Audio(cardClickSound);
 
   const { duplicatedCardsArray, setDuplicatedCardsArray } = useGenerateCards(numberOfCards);
   const { twoCardsFaceUp, penalties } = useVerifyCardPair(duplicatedCardsArray, setDuplicatedCardsArray);
-  const {gameTime, setGameTime, gameEnded, setOpenEndGameModal, openEndGameModal} = useVerifyEndedGame(penalties, difficulty, usersData, setUsersData, duplicatedCardsArray, userName, userAvatar);
+  const {
+    gameTime, 
+    setGameTime, 
+    gameEnded, 
+    setOpenEndGameModal, 
+    openEndGameModal
+  } = useVerifyEndedGame(
+    penalties,
+    difficulty,
+    usersData,
+    setUsersData,
+    duplicatedCardsArray,
+    userName,
+    userAvatar
+  );
+
+  const clickSound = new Audio(cardClickSound);
 
   const cardSelected = duplicatedCardsArray.find(card => card.isFlipped === false && card.isMatched === false)
 
@@ -40,7 +55,7 @@ const Game = ({ userName, numberOfCards, userAvatar, difficulty, usersData, setU
     <BackgroundDiv>
       <ContainerMax>
         {
-          //!userName ? <NotFound /> :
+          !userName ? <NotFound /> :
           <>
             <Navbar>
               <NavCardUser>

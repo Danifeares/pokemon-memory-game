@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 
-export function useVerifyEndedGame(penalties, difficulty, usersData, setUsersData, duplicatedCardsArray, userName, userAvatar) {
+export function useVerifyEndedGame(
+  penalties, 
+  difficulty, 
+  usersData, 
+  setUsersData, 
+  duplicatedCardsArray, 
+  userName, 
+  userAvatar
+) {
   const [end, setEnd] = useState(false)
   const [gameTime, setGameTime] = useState(0);
   const [gameEnded, setGameEnded] = useState(false);

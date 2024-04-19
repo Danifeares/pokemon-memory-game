@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import gameHit from '../../../assets/sounds/gameHit.mp3'
 
 export function useVerifyCardPair(duplicatedCardsArray, setDuplicatedCardsArray) {
   const [penalties, setPenalties] = useState(0);
   const [twoCardsFaceUp, setTwoCardsFaceUp] = useState(false);
+
+  const gameHitSound = new Audio(gameHit);
 
   const handleMatchedCard = (card) => {
     const mappedMatchedCards = duplicatedCardsArray.map((item) => {
@@ -39,6 +42,7 @@ export function useVerifyCardPair(duplicatedCardsArray, setDuplicatedCardsArray)
 
       if (cardPair[0].id === cardPair[1].id) {
         handleMatchedCard(cardPair[0]);
+        gameHitSound.play();
 
       } else {
         setTimeout(() => {
