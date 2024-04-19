@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     sound.loop = true;
-    sound.autoplay;
     sound.play();
   }, []);
 
